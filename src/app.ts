@@ -16,16 +16,16 @@ enum Category {
     Angular,
 }
 
-type Books = {
+type Book = {
     id: number;
     title: string;
     author: string;
     available: boolean;
     category: Category;
-}[];
+};
 
-function getAllBooks(): Books {
-    const books: Books = [
+function getAllBooks(): readonly Book[] {
+    const books = <const>[
         {
             id: 1,
             title: 'Refactoring JavaScript',
@@ -52,7 +52,7 @@ function getAllBooks(): Books {
     return books;
 }
 
-function logFirstAvailable(books: Books): void {
+function logFirstAvailable(books: readonly Book[]): void {
     console.log(`Number of books ${books.length}`);
 
     const title = books.find(({ available }) => available)?.title;
@@ -77,7 +77,7 @@ function getBooksAuthorByIndex(index: number): [title: string, author: string] {
 }
 
 function callTotalPages(): void {
-    const data = [
+    const data = <const>[
         { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
         { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
         { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 },
