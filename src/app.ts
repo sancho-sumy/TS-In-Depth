@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
@@ -16,13 +18,22 @@ enum Category {
     Angular,
 }
 
-type Book = {
+// type Book = {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+// };
+
+interface Book {
     id: number;
     title: string;
     author: string;
     available: boolean;
     category: Category;
-};
+    pages?: number;
+}
 
 function getAllBooks(): readonly Book[] {
     const books = <const>[
@@ -52,14 +63,14 @@ function getAllBooks(): readonly Book[] {
     return books;
 }
 
-function logFirstAvailable(books: readonly Book[]): void {
+function logFirstAvailable(books: readonly Book[] = getAllBooks()): void {
     console.log(`Number of books ${books.length}`);
 
     const title = books.find(({ available }) => available)?.title;
     console.log(`First available book: ${title}`);
 }
 
-function getBooksTitleByCategory(inputCategory: Category): string[] {
+function getBooksTitleByCategory(inputCategory: Category = Category.JavaScript): string[] {
     const books = getAllBooks();
 
     return books.filter(({ category }) => category === inputCategory).map(({ title }) => title);
@@ -90,6 +101,72 @@ function callTotalPages(): void {
     console.log(r);
 }
 
+function createCustomerId(name: string, id: number): string {
+    return `${id}/${name}`;
+}
+
+function createCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Customer name: ${name}`);
+    if (age) {
+        console.log(`Customer age ${age}`);
+    }
+    if (city) {
+        console.log(`Customer city ${city}`);
+    }
+}
+
+function getBookByID(id: Book['id']): Book | undefined {
+    const books = getAllBooks();
+    return books.find(book => book.id === id);
+}
+
+function checkoutBooks(customer: string, ...bookIDs: number[]): string[] {
+    console.log(`Customer name: ${customer}`);
+
+    return bookIDs
+        .map(id => getBookByID(id))
+        .filter(book => book.available)
+        .map(book => book.title);
+}
+
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(id: number, available: boolean): string[];
+function getTitles(...args: any[]): string[] {
+    const books = getAllBooks();
+
+    if (args.length === 1) {
+        const [arg] = args;
+
+        if (typeof arg === 'string') {
+            return books.filter(book => book.author === arg).map(book => book.title);
+        } else if (typeof arg === 'boolean') {
+            return books.filter(book => book.available === arg).map(book => book.title);
+        }
+    } else if (args.length === 2) {
+        const [id, available] = args;
+
+        if (typeof id === 'number' && typeof available === 'boolean') {
+            return books.filter(book => book.id === id && book.available === available).map(book => book.title);
+        }
+    }
+}
+
+function assertsStringValue(data: any): asserts data is string {
+    if (typeof data !== 'string') {
+        throw new Error('value should have been a string');
+    }
+}
+
+function bookTitleTransform(title: any): string {
+    assertsStringValue(title);
+    return [...title].reverse().join('');
+}
+
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
+
 // ====================================================
 // Task 02.01
 
@@ -97,4 +174,52 @@ function callTotalPages(): void {
 // logFirstAvailable(getAllBooks());
 // logBooksTitles(getBooksTitleByCategory(Category.CSS));
 // console.log(getBooksAuthorByIndex(0));
-callTotalPages();
+// callTotalPages();
+
+// Task 03.01
+// const myId: string = createCustomerId('Ann', 10);
+// console.log(myId);
+
+// let idGenerator: (name: string, id: number) => string;
+// let idGenerator: typeof createCustomerId;
+// idGenerator = (name: string, id: number) => `${id} /${name}`;
+
+// idGenerator = createCustomerId;
+
+// console.log(idGenerator('Boris', 20));
+
+// Task 03.02
+// createCustomer('Anna');
+// createCustomer('Anna', 30);
+// createCustomer('Anna', 30, 'Kyiv');
+
+// console.log(getBooksTitleByCategory());
+// logFirstAvailable();
+// console.log(getBookByID(1));
+
+// console.log(checkoutBooks('Sting', 1, 2, 3));
+
+// Task 03.03
+// console.log(getTitles(1, true));
+// console.log(getTitles(true));
+// console.log(getTitles(false));
+// console.log(getTitles('Evan Burchard'));
+
+// Task 03.04
+
+// console.log(bookTitleTransform('Learn TypeScript'));
+// console.log(bookTitleTransform(123));
+
+// Task 04.01
+const myBook: Book = {
+    id: 5,
+    title: 'Colors, Backgrounds, and Gradients',
+    author: 'Eric A. Mayer',
+    available: true,
+    category: Category.CSS,
+    // year: 2015,
+    // copies: 3,
+    pages: 200,
+};
+
+printBook(myBook);
