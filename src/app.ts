@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-redeclare */
 
 showHello('greeting', 'TypeScript');
@@ -26,6 +27,8 @@ enum Category {
 //     category: Category;
 // };
 
+type BookProperties = keyof Book;
+
 interface Book {
     id: number;
     title: string;
@@ -40,6 +43,20 @@ interface Book {
 
 interface DamageLoger {
     (reason: string): void;
+}
+
+interface Person {
+    name: string;
+    email: string;
+}
+
+interface Librarian extends Person {
+    department: string;
+    assistCustomer: (custName: string, bookTitle: string) => void;
+}
+
+interface Author extends Person {
+    numBooksPublished: number;
 }
 
 function getAllBooks(): readonly Book[] {
@@ -174,6 +191,51 @@ function printBook(book: Book): void {
     console.log(`${book.title} by ${book.author}`);
 }
 
+function getProperty(book: Book, prop: BookProperties): any {
+    const value = book[prop];
+
+    return typeof value === 'function' ? value.name : value;
+}
+
+class ReferenceItem {
+    // title: string;
+    // year: number;
+
+    // constructor(newTitle: string, newYear: number) {
+    //     console.log('Creating a new ReferenceItem...');
+    //     this.title = newTitle;
+    //     this.year = newYear;
+    // }
+
+    #id: number;
+
+    private _publisher: string;
+
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
+    }
+
+    static department: string = 'Research Dep.';
+
+    constructor(id: number, public title: string, private year: number) {
+        console.log('Creating a new ReferenceItem...');
+        this.#id = id;
+    }
+
+    printItem(): void {
+        console.log(`${this.title} was published in ${this.year}`);
+        console.log(ReferenceItem.department);
+        console.log(Object.getPrototypeOf(this).constructor.department);
+    }
+
+    getID(): number {
+        return this.#id;
+    }
+}
 // ====================================================
 // Task 02.01
 
@@ -235,5 +297,43 @@ function printBook(book: Book): void {
 
 // Task 04.02
 
-const logDamage: DamageLoger = (reason: string) => console.log(`Damaged: ${reason}`);
-logDamage('missing back cover');
+// const logDamage: DamageLoger = (reason: string) => console.log(`Damaged: ${reason}`);
+// logDamage('missing back cover');
+
+// Task 04.03
+
+// const favouriteAuthor: Author = {
+//     email: 'Anna',
+//     name: 'anna@example.com',
+//     numBooksPublished: 2,
+// };
+
+// const favouriteLibrarian: Librarian = {
+//     name: 'Boris',
+//     email: 'boris@example.com',
+//     department: 'Classical Literature',
+//     assistCustomer(custName, bookTitle) {},
+// };
+
+// Task 04.04
+
+// const offer: any = {
+//     book: {
+//         title: 'Essential TypeScript',
+//     },
+// };
+
+// console.log(offer.magazine);
+// console.log(offer.magazine?.getTitle());
+// console.log(offer.book.getTitle?.());
+// console.log(offer.book.author?.[0]);
+
+// Task 04.05
+// console.log(getProperty(myBook, 'title'));
+
+const ref = new ReferenceItem(1, 'Learn TypeScript', 2022);
+console.log(ref);
+ref.printItem();
+ref.publisher = 'abc group';
+console.log(ref.publisher);
+console.log(ref.getID());
