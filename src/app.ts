@@ -28,7 +28,8 @@ enum Category {
 // };
 
 type BookProperties = keyof Book;
-
+type PersonBook = Person & Book;
+type BookOrUndefined = Book | undefined;
 interface Book {
     id: number;
     title: string;
@@ -57,6 +58,11 @@ interface Librarian extends Person {
 
 interface Author extends Person {
     numBooksPublished: number;
+}
+
+interface TOptions {
+    duration?: number;
+    speed?: number;
 }
 
 function getAllBooks(): readonly Book[] {
@@ -139,7 +145,7 @@ function createCustomer(name: string, age?: number, city?: string): void {
     }
 }
 
-function getBookByID(id: Book['id']): Book | undefined {
+function getBookByID(id: Book['id']): BookOrUndefined {
     const books = getAllBooks();
     return books.find(book => book.id === id);
 }
@@ -195,6 +201,12 @@ function getProperty(book: Book, prop: BookProperties): any {
     const value = book[prop];
 
     return typeof value === 'function' ? value.name : value;
+}
+
+function setDefaultConfig(options: TOptions) {
+    options.duration ??= 100;
+    options.speed ??= 60;
+    return options;
 }
 
 abstract class ReferenceItem {
@@ -258,7 +270,7 @@ class Encyclopedia extends ReferenceItem {
 //     a: number;
 // }
 
-class UniversityLibrarian implements Librarian /*, A */ {
+class UniversityLibrarian implements Librarian /* , A */ {
     name: string;
     email: string;
     department: string;
@@ -386,3 +398,21 @@ class UniversityLibrarian implements Librarian /*, A */ {
 // favoriteLibrarian.name = 'Anna';
 // favoriteLibrarian.assistCustomer('Boris', 'Learn TypeScript');
 // favoriteLibrarian.a = 2;
+
+// Task 05.05
+
+// const personBook: PersonBook = {
+//     name: 'Anna',
+//     author: 'Anna',
+//     available: false,
+//     category: Category.Angular,
+//     email: 'anna@example.com',
+//     id: 1,
+//     title: 'Unknown',
+// };
+
+// const options: TOptions = { duration: 20 };
+// const options2 = setDefaultConfig(options);
+// console.log(options);
+// console.log(options2);
+// console.log(Object.is(options, options2));
