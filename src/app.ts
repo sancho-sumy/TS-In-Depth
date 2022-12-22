@@ -10,6 +10,7 @@ import {
     logFirstAvailable,
 } from './functions';
 import { Librarian, Logger } from './interfaces';
+import { Library } from './classes/library';
 
 showHello('greeting', 'TypeScript');
 
@@ -188,3 +189,14 @@ function showHello(divName: string, name: string) {
 
 //     console.log(reader);
 // }
+
+// Task 06.06
+
+// let library: Library = new Library();
+// let library: Library = {
+//     id: 1,
+//     address: '',
+//     name: 'Anna',
+// };
+
+// console.log(library);
