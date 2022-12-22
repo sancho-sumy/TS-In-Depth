@@ -1,6 +1,7 @@
 import { ReferenceItem, UL, RefBook } from './classes';
 import { Category } from './enums';
 import {
+    purge,
     printRefBook,
     callTotalPages,
     getAllBooks,
@@ -9,7 +10,7 @@ import {
     logBooksTitles,
     logFirstAvailable,
 } from './functions';
-import { Librarian, Logger } from './interfaces';
+import { Book, Librarian, Logger } from './interfaces';
 import { Library } from './classes/library';
 
 showHello('greeting', 'TypeScript');
@@ -191,7 +192,6 @@ function showHello(divName: string, name: string) {
 // }
 
 // Task 06.06
-
 // let library: Library = new Library();
 // let library: Library = {
 //     id: 1,
@@ -200,3 +200,17 @@ function showHello(divName: string, name: string) {
 // };
 
 // console.log(library);
+
+// Task 07.01
+// const inventory: Book[] = [
+//     { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+//     { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+//     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+//     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
+// ];
+
+// const result1 = purge(inventory);
+// console.log(result1);
+
+// const result2 = purge([1, 2, 3]);
+// console.log(result2);
