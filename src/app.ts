@@ -9,6 +9,7 @@ import {
     getBooksTitleByCategory,
     logBooksTitles,
     logFirstAvailable,
+    getObjectProperty,
 } from './functions';
 import { Book, Librarian, Logger, Magazine } from './interfaces';
 import { Library } from './classes/library';
@@ -215,7 +216,7 @@ const inventory: Book[] = [
 // const result2 = purge([1, 2, 3]);
 // console.log(result2);
 
-// Task 07.02
+// Task 07.02, 07.03
 // const bookShelf: Shelf<Book> = new Shelf<Book>();
 // const bookShelf = new Shelf<Book>();
 // inventory.forEach(book => bookShelf.add(book));
@@ -230,6 +231,12 @@ const inventory: Book[] = [
 // const magazineShelf = new Shelf<Magazine>();
 // magazines.forEach(mag => magazineShelf.add(mag));
 // console.log(magazineShelf.getFirst().title);
+
+// magazineShelf.printTitles();
+// console.log(magazineShelf.find('Five Points'));
+
+// console.log(getObjectProperty(magazines[0], 'title'));
+// console.log(getObjectProperty(inventory[1], 'author'));
 
 // Task 08.01, 08.02
 // const favoriteLibrarian1 = new UL.UniversityLibrarian();
