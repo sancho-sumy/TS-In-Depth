@@ -44,4 +44,8 @@ interface Magazine {
     publisher: string;
 }
 
-export { Author, Book, Librarian, Person, Magazine, TOptions, DamageLoger as Logger };
+interface shelfItem {
+    title: string;
+}
+
+export { Author, Book, Librarian, Person, Magazine, TOptions, DamageLoger as Logger, shelfItem };

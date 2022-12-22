@@ -1,4 +1,6 @@
-export default class Shelf<T> {
+import { shelfItem } from '../interfaces';
+
+export default class Shelf<T extends shelfItem> {
     private items: T[] = [];
 
     add(item: T): void {
@@ -8,18 +10,26 @@ export default class Shelf<T> {
     getFirst(): T {
         return this.items[0];
     }
-}
 
-import { Book, Magazine } from '../interfaces';
-
-export class Shelf2 {
-    private items: Book[] | Magazine[] = [];
-
-    add(item: T): void {
-        this.items.push(item);
+    find(title: string): T {
+        return this.items.find((item: T) => item.title === title);
     }
 
-    getFirst(): T {
-        return this.items[0];
+    printTitle(): void {
+        this.items.forEach((item: T) => console.log(item.title));
     }
 }
+
+// import { Book, Magazine } from '../interfaces';
+
+// export class Shelf2 {
+//     private items: Book[] | Magazine[] = [];
+
+//     add(item: T): void {
+//         this.items.push(item);
+//     }
+
+//     getFirst(): T {
+//         return this.items[0];
+//     }
+// }

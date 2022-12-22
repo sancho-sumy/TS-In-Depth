@@ -217,16 +217,41 @@ const inventory: Book[] = [
 
 // Task 07.02
 // const bookShelf: Shelf<Book> = new Shelf<Book>();
-const bookShelf = new Shelf<Book>();
-inventory.forEach(book => bookShelf.add(book));
-console.log(bookShelf.getFirst().title);
+// const bookShelf = new Shelf<Book>();
+// inventory.forEach(book => bookShelf.add(book));
+// console.log(bookShelf.getFirst().title);
 
-const magazines: Magazine[] = [
-    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
-    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
-    { title: 'Five Points', publisher: 'GSU' },
-];
+// const magazines: Magazine[] = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' },
+// ];
 
-const magazineShelf = new Shelf<Magazine>();
-magazines.forEach(mag => magazineShelf.add(mag));
-console.log(magazineShelf.getFirst().title);
+// const magazineShelf = new Shelf<Magazine>();
+// magazines.forEach(mag => magazineShelf.add(mag));
+// console.log(magazineShelf.getFirst().title);
+
+// Task 08.01, 08.02
+// const favoriteLibrarian1 = new UL.UniversityLibrarian();
+// const favoriteLibrarian2 = new UL.UniversityLibrarian();
+
+// favoriteLibrarian1['a'] = 1;
+// UL.UniversityLibrarian['a'] = 2;
+
+// console.log(favoriteLibrarian1);
+
+// Task 08.03
+// const favoriteLibrarian1 = new UL.UniversityLibrarian();
+// console.log(favoriteLibrarian1);
+// favoriteLibrarian1.assistFaculty = null;
+// favoriteLibrarian1.teachCommunity = null;
+
+// Task 08.04
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+
+// Task 08.05
+// const favoriteLibrarian1 = new UL.UniversityLibrarian();
+// console.log(favoriteLibrarian1);
+// favoriteLibrarian1.name = 'Anna';
+// favoriteLibrarian1.assistCustomer('Boris', 'LearnType');
