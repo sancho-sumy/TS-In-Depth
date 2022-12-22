@@ -1,4 +1,4 @@
-import { ReferenceItem, UniversityLibrarian } from './classes';
+import { ReferenceItem, UL, RefBook } from './classes';
 import { Category } from './enums';
 import {
     printRefBook,
@@ -10,7 +10,6 @@ import {
     logFirstAvailable,
 } from './functions';
 import { Librarian, Logger } from './interfaces';
-import RefBook from './encyclopedia';
 
 showHello('greeting', 'TypeScript');
 
@@ -134,7 +133,7 @@ function showHello(divName: string, name: string) {
 // refBook.printCitation();
 
 // Task 05.04
-// const favoriteLibrarian: Librarian = new UniversityLibrarian();
+// const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
 // favoriteLibrarian.name = 'Anna';
 // favoriteLibrarian.assistCustomer('Boris', 'Learn TypeScript');
 // favoriteLibrarian.a = 2;
@@ -161,5 +160,5 @@ function showHello(divName: string, name: string) {
 // const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
 // printRefBook(refBook);
 
-// const favoriteLibrarian: Librarian = new UniversityLibrarian();
+// const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
 // printRefBook(favoriteLibrarian);
