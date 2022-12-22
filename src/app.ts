@@ -1,6 +1,7 @@
-import { ReferenceItem } from './classes';
+import { ReferenceItem, UniversityLibrarian } from './classes';
 import { Category } from './enums';
 import {
+    printRefBook,
     callTotalPages,
     getAllBooks,
     getBooksAuthorByIndex,
@@ -8,7 +9,8 @@ import {
     logBooksTitles,
     logFirstAvailable,
 } from './functions';
-import { Logger } from './interfaces';
+import { Librarian, Logger } from './interfaces';
+import RefBook from './encyclopedia';
 
 showHello('greeting', 'TypeScript');
 
@@ -19,21 +21,6 @@ function showHello(divName: string, name: string) {
 
 // ============================================================
 // Task 01.01
-
-class Encyclopedia extends ReferenceItem {
-    constructor(id: number, title: string, year: number, public edition: number) {
-        super(id, title, year);
-    }
-
-    // override printItem(): void {
-    //     super.printItem();
-    //     console.log(`Edition: ${this.edition} (${this.year})`);
-    // }
-
-    printCitation(): void {
-        console.log(`${this.title} - ${this.year}`);
-    }
-}
 
 // ====================================================
 // Task 02.01
@@ -141,7 +128,7 @@ class Encyclopedia extends ReferenceItem {
 // console.log(ref.getID());
 
 // Task 05.02, 05.03
-// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
 // refBook.printItem();
 // console.log(refBook);
 // refBook.printCitation();
@@ -169,3 +156,10 @@ class Encyclopedia extends ReferenceItem {
 // console.log(options);
 // console.log(options2);
 // console.log(Object.is(options, options2));
+
+// Task 06.03
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
+// printRefBook(refBook);
+
+// const favoriteLibrarian: Librarian = new UniversityLibrarian();
+// printRefBook(favoriteLibrarian);
