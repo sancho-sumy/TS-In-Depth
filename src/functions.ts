@@ -78,10 +78,10 @@ export function createCustomerId(name: string, id: number): string {
 export function createCustomer(name: string, age?: number, city?: string): void {
     console.log(`Customer name: ${name}`);
     if (age) {
-        console.log(`Customer age ${age}`);
+        console.log(`Customer age: ${age}`);
     }
     if (city) {
-        console.log(`Customer city ${city}`);
+        console.log(`Customer city: ${city}`);
     }
 }
 

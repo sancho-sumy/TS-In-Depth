@@ -10,9 +10,11 @@ import {
     logBooksTitles,
     logFirstAvailable,
     getObjectProperty,
+    createCustomer,
 } from './functions';
 import { Book, Librarian, Logger, Magazine } from './interfaces';
 import { Library } from './classes/library';
+import { BookRequiredFields, UpdateBook, СreateCustomerFunctionType } from './types';
 
 showHello('greeting', 'TypeScript');
 
@@ -237,6 +239,24 @@ const inventory: Book[] = [
 
 // console.log(getObjectProperty(magazines[0], 'title'));
 // console.log(getObjectProperty(inventory[1], 'author'));
+
+// Task 07.04
+// const bookRequiredFields: BookRequiredFields = {
+//     author: 'Anna',
+//     available: false,
+//     category: Category.Angular,
+//     id: 1,
+//     markDamage: null,
+//     pages: 200,
+//     title: 'Learn Angular',
+// };
+// const updatedBook: UpdateBook = {
+//     id: 1,
+//     pages: 300,
+// };
+let params: Parameters<СreateCustomerFunctionType>;
+params = ['Anna', 30, 'Kyiv'];
+createCustomer(...params);
 
 // Task 08.01, 08.02
 // const favoriteLibrarian1 = new UL.UniversityLibrarian();
