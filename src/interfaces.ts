@@ -39,4 +39,9 @@ interface TOptions {
     speed?: number;
 }
 
-export { Author, Book, Librarian, Person, TOptions, DamageLoger as Logger };
+interface Magazine {
+    title: string;
+    publisher: string;
+}
+
+export { Author, Book, Librarian, Person, Magazine, TOptions, DamageLoger as Logger };
